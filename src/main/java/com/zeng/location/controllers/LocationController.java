@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zeng.location.entities.Location;
 import com.zeng.location.service.LocationService;
@@ -36,7 +37,16 @@ public class LocationController {
 		modelMap.addAttribute("locations", locations);
 		return "displayLocations";
 	}
-
-
+	
+	@RequestMapping("deleteLocation")
+	public String deleteLocation(@RequestParam("id") int id, ModelMap modelMap) {
+		// Location location = service.getLocationById(id);
+		Location location = new Location();
+		location.setId(id);
+		service.deleteLocation(location);
+		List<Location> locations = service.getAllLocations();
+		modelMap.addAttribute("locations", locations);
+		return "displayLocations";
+	}
 
 }
