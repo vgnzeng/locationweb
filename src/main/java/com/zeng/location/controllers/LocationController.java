@@ -2,6 +2,8 @@ package com.zeng.location.controllers;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,17 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zeng.location.entities.Location;
+import com.zeng.location.repos.LocationRepository;
 import com.zeng.location.service.LocationService;
 import com.zeng.location.util.EmailUtil;
+import com.zeng.location.util.ReportUtil;
 
 @Controller
 public class LocationController {
 
 	@Autowired
 	LocationService service;
-	
+
+	@Autowired
+	LocationRepository repository;
+
 	@Autowired
 	EmailUtil emailUtil;
+
+	@Autowired
+	ReportUtil reportUtil;
+
+	@Autowired
+	ServletContext sc;
 	
 	@RequestMapping("/showCreate")
 	public String showCreate() {
@@ -70,5 +83,13 @@ public class LocationController {
 		return "displayLocations";
 	}
 
+	@RequestMapping("/generateReport")
+	public String generateReport() {
+		String path = sc.getRealPath("/");
+		List<Object[]> data = repository.findTypeAndTypeCount();
+		reportUtil.generatePieChart(path, data);
+		return "report";
+
+	}
 
 }
