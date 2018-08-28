@@ -34,12 +34,12 @@ public class LocationController {
 
 	@Autowired
 	ServletContext sc;
-	
+
 	@RequestMapping("/showCreate")
 	public String showCreate() {
 		return "createLocation";
 	}
-	
+
 	@RequestMapping("/saveLoc")
 	public String saveLocation(@ModelAttribute("location") Location location, ModelMap modelMap) {
 		Location locationSaved = service.saveLocation(location);
@@ -49,14 +49,14 @@ public class LocationController {
 				"Location Saved Successfully and about to return a response");
 		return "createLocation";
 	}
-	
+
 	@RequestMapping("/displayLocations")
 	public String displayLocations(ModelMap modelMap) {
 		List<Location> locations = service.getAllLocations();
 		modelMap.addAttribute("locations", locations);
 		return "displayLocations";
 	}
-	
+
 	@RequestMapping("deleteLocation")
 	public String deleteLocation(@RequestParam("id") int id, ModelMap modelMap) {
 		// Location location = service.getLocationById(id);

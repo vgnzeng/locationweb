@@ -44,12 +44,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
 		<dependency>
 		    <groupId>jfree</groupId>
 		    <artifactId>jfreechart</artifactId>
-		    <version>1.0.9</version>
+		    <version>1.0.13</version>
 		</dependency>
+
 		
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -8,6 +8,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,7 +22,7 @@ public class ReportUtilImpl implements ReportUtil {
 			dataset.setValue(objects[0].toString(), new Double(objects[1].toString()));
 		}
 
-		JFreeChart chart = ChartFactory.createPieChart3D("Location Type Report", dataset);
+		JFreeChart chart = ChartFactory.createPieChart3D("Location Type Report", dataset, false, false, false);
 
 		try {
 			ChartUtilities.saveChartAsJPEG(new File(path + "/pieChart.jpeg"), chart, 300, 300);
