@@ -1,4 +1,4 @@
-package com.bharath.location.util;
+package com.zeng.location.util;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
